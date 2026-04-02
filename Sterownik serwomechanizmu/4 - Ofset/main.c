@@ -1,0 +1,34 @@
+#include "led.h"
+#include "timer_interrupts.h"
+#include "keyboard.h"
+#include "servo.h"
+
+int main() {
+	ServoInit(40);
+	KeyboardInit();
+
+	while(1){
+	 	switch (eKeyboardRead()){
+			
+			case BUTTON_0:														//ServoInit(40);
+																								//ServoInit(24);
+																								//ServoInit(12);
+				ServoCallib();													//po wklejeniu nie wykona sie, bo wykonuja sie po kolei nadpisuja co zrobic, rozwiazanie --> ServoGoTo
+			break;
+			
+			case BUTTON_1:
+				ServoGoTo(12);
+			break;
+			
+			case BUTTON_2:
+				ServoGoTo(24);
+			break;
+			
+			case BUTTON_3:
+				ServoGoTo(36);
+			break;
+			
+			default: {}
+		}
+	}
+}
